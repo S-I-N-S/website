@@ -1,0 +1,161 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    z-index: 1;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: green;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.home_button {
+    margin-right: auto;
+}
+
+/* Main Content Area */
+main {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.landing-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    filter: blur(6px);
+}
+
+.logo-div {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.logo {
+    max-width: 80%;
+    max-height: 50vh;
+    object-fit: contain;
+}
+
+/* About Page Styles */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: white;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+    text-align: center;
+    width: 100%;
+}
+
+.about-content img {
+    width: 250px;
+    height: auto;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+.about-content p {
+    line-height: 1.6;
+    font-size: 18px;
+    max-width: 800px;
+}
+
+.contact-us {
+    text-align: center;
+    margin-top: 20px;
+    padding: 30px;
+    border-top: 1px solid #333;
+    width: 100%;
+    max-width: 800px;
+}
+
+.contact-us h2 {
+    color: green;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.contact-us p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.contact-button {
+    display: inline-block;
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.contact-button:hover {
+    background-color: #006600;
+}
