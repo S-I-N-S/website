@@ -1,0 +1,16 @@
+---
+services:
+  gatsby:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"  # Main development server
+      - "9000:9000"  # For Gatsby GraphQL explorer
+    volumes:
+      - ./:/app:z
+      - /app/node_modules  # Don't overwrite node_modules with host
+    environment:
+      - NODE_ENV=development
+      - GATSBY_WEBPACK_PUBLICPATH=/
+    restart: unless-stopped
