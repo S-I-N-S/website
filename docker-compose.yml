@@ -4,6 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # Add no-cache option to ensure fresh builds
+      args:
+        - BUILDKIT_INLINE_CACHE=0
     ports:
       - "8000:8000"  # Main development server
       - "9000:9000"  # For Gatsby GraphQL explorer

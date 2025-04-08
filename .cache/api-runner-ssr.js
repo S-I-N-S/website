@@ -1,4 +1,20 @@
 var plugins = [{
+      name: 'gatsby-plugin-react-helmet',
+      plugin: require('/app/node_modules/gatsby-plugin-react-helmet/gatsby-ssr.js'),
+      options: {"plugins":[]},
+    },{
+      name: 'gatsby-plugin-image',
+      plugin: require('/app/node_modules/gatsby-plugin-image/gatsby-ssr.js'),
+      options: {"plugins":[]},
+    },{
+      name: 'gatsby-plugin-manifest',
+      plugin: require('/app/node_modules/gatsby-plugin-manifest/gatsby-ssr.js'),
+      options: {"plugins":[],"name":"SINS Malware Sandbox","short_name":"SINS","start_url":"/","background_color":"#e0e5ec","theme_color":"#4d5b9e","display":"minimal-ui","icon":"src/images/sins-icon.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"37900142fa28f9b51e77baf0fa1c8500"},
+    },{
+      name: 'gatsby-plugin-offline',
+      plugin: require('/app/node_modules/gatsby-plugin-offline/gatsby-ssr.js'),
+      options: {"plugins":[]},
+    },{
       name: 'partytown',
       plugin: require('/app/node_modules/gatsby/dist/internal-plugins/partytown/gatsby-ssr.js'),
       options: {"plugins":[]},
