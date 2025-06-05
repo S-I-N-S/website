@@ -1,3 +1,4 @@
+"use strict";
 exports.id = "component---src-pages-index-js";
 exports.ids = ["component---src-pages-index-js"];
 exports.modules = {
@@ -8,7 +9,6 @@ exports.modules = {
   \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Head: () => (/* binding */ Head),
@@ -16,264 +16,545 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
-/* harmony import */ var _styles_index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/index.css */ "./src/styles/index.css");
-/* harmony import */ var _styles_index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_styles_index_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-helmet */ "./node_modules/react-helmet/es/Helmet.js");
 
 
 
+// Sandbox Logo Component (inline to avoid import issues)
+const SandboxLogo = ({
+  size = 24,
+  color = 'currentColor'
+}) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+  width: size,
+  height: size,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  xmlns: "http://www.w3.org/2000/svg"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("rect", {
+  x: "3",
+  y: "8",
+  width: "18",
+  height: "12",
+  rx: "2",
+  stroke: color,
+  strokeWidth: "1.5",
+  fill: "none"
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("circle", {
+  cx: "7",
+  cy: "14",
+  r: "1",
+  fill: color,
+  opacity: "0.6"
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("circle", {
+  cx: "12",
+  cy: "16",
+  r: "1",
+  fill: color,
+  opacity: "0.8"
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("circle", {
+  cx: "17",
+  cy: "13",
+  r: "1",
+  fill: color,
+  opacity: "0.6"
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("circle", {
+  cx: "9",
+  cy: "17",
+  r: "0.5",
+  fill: color,
+  opacity: "0.4"
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("circle", {
+  cx: "15",
+  cy: "15",
+  r: "0.5",
+  fill: color,
+  opacity: "0.4"
+}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+  d: "M12 3L16 5V9C16 11.5 14 13.5 12 14C10 13.5 8 11.5 8 9V5L12 3Z",
+  stroke: color,
+  strokeWidth: "1.5",
+  fill: "none",
+  opacity: "0.7"
+}));
 
+// Theme colors based on your specifications
+const themes = {
+  light: {
+    // Primary colors
+    primary: '#7C3AED',
+    primaryContainer: '#C3AEE6',
+    onPrimary: '#FFFFFF',
+    onPrimaryContainer: '#1B0C33',
+    // Secondary colors
+    secondary: '#3AED7C',
+    secondaryContainer: '#AEE6C3',
+    onSecondary: '#FFFFFF',
+    onSecondaryContainer: '#0C331B',
+    // Tertiary colors
+    tertiary: '#ED7C3A',
+    tertiaryContainer: '#E6C3AE',
+    onTertiary: '#FFFFFF',
+    onTertiaryContainer: '#331B0C',
+    // Surface colors
+    background: '#fcfbfc',
+    onBackground: '#323133',
+    surface: '#fcfbfc',
+    onSurface: '#323133',
+    surfaceVariant: '#dfdae6',
+    onSurfaceVariant: '#5c5666',
+    outline: '#8a8299',
+    shadow: '#d6d5d6',
+    // Neomorphic shadows
+    lightShadow: '#ffffff',
+    darkShadow: '#d6d5d6',
+    primaryDarkShadow: '#6931c9',
+    primaryLightShadow: '#8f43ff'
+  },
+  dark: {
+    // Primary colors
+    primary: '#97E6B4',
+    primaryContainer: '#186635',
+    onPrimary: '#124C28',
+    onPrimaryContainer: '#AEE6C3',
+    // Secondary colors
+    secondary: '#B497E6',
+    secondaryContainer: '#351866',
+    onSecondary: '#28124C',
+    onSecondaryContainer: '#C3AEE6',
+    // Tertiary colors
+    tertiary: '#E6B497',
+    tertiaryContainer: '#663518',
+    onTertiary: '#4C2812',
+    onTertiaryContainer: '#E6C3AE',
+    // Surface colors
+    background: '#313332',
+    onBackground: '#e3e6e4',
+    surface: '#313332',
+    onSurface: '#e3e6e4',
+    surfaceVariant: '#56665c',
+    onSurfaceVariant: '#d6e6dc',
+    outline: '#a1b3a8',
+    shadow: '#2a2b2b',
+    // Neomorphic shadows
+    lightShadow: '#383b3a',
+    darkShadow: '#2a2b2b',
+    primaryDarkShadow: '#80c499',
+    primaryLightShadow: '#aeffcf'
+  }
+};
 const IndexPage = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
-    className: "main-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_helmet__WEBPACK_IMPORTED_MODULE_3__.Helmet, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("title", null, "SINS - Secure Interactive Malware Sandbox"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("meta", {
-    name: "description",
-    content: "Safely analyze and understand malware in an isolated environment"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
-    className: "header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "logo-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "logo"
-  }, "SINS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "logo-subtitle"
-  }, "Secure Interactive Malware Sandbox")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
-    className: "nav"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "#features"
-  }, "Features")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "#about"
-  }, "About")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "#contact"
-  }, "Contact")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "login-button"
-  }, "Login"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
-    className: "hero"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "hero-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Analyze Malware in a ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "highlight"
-  }, "Secure Sandbox")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Safely dissect, analyze, and understand malicious code in an isolated environment without risking your infrastructure."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "cta-buttons"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "signup-button"
-  }, "Sign Up for Free Access"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "demo-button"
-  }, "Watch Demo"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "hero-visual"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "sandbox-visual"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-window"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "window-controls"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "01"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "class MalwareAnalyzer ", '{')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "02"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "  constructor() ", '{')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "03"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "    this.sandbox = new SecureEnvironment();")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "04"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "    this.threats = [];")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "05"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "  ", '}')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "06"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "  ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "07"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "  analyze(sample) ", '{')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "08"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "    const result = this.sandbox.execute(sample);")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "09"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "    return this.generateReport(result);")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "10"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, "  ", '}')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "code-line"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-number"
-  }, "11"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "code-text"
-  }, '}')))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "glow-effect"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
-    id: "features",
-    className: "features"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Advanced Sandbox Features"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "features-grid"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "feature-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "feature-icon"
-  }, "\uD83D\uDD12"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Isolation Technology"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Complete isolation from your network and infrastructure ensures zero risk of infection.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "feature-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "feature-icon"
-  }, "\uD83D\uDCCA"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Behavioral Analysis"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Advanced runtime analysis with comprehensive reports on malware behavior.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "feature-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "feature-icon"
-  }, "\u2699\uFE0F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Custom Environments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Simulate various OS configurations to analyze target-specific behavior.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "feature-card"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "feature-icon"
-  }, "\uD83D\uDD0D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Deep Inspection"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Static and dynamic code analysis with detailed memory and network monitoring.")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
-    className: "access-panel"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "access-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Ready to explore the sandbox?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "access-options"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "signup-area"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "New Users"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Create an account to get started with our secure malware analysis platform."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "signup-button"
-  }, "Sign Up Now")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "login-area"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Existing Users"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Already have an account? Access the sandbox directly."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "https://sandbox.example.com",
-    className: "login-link"
-  }, "Go to Sandbox"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
-    id: "about",
-    className: "about"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Why Choose Our Sandbox?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "about-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "about-text"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Traditional malware analysis is risky and resource-intensive. Our interactive sandbox provides a secure, isolated environment where security professionals, researchers, and cybersecurity students can safely analyze and understand malicious code."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Built by security experts with a focus on usability and comprehensive analysis, our platform helps you stay ahead of emerging threats while protecting your infrastructure.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stats-panel"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-number"
-  }, "99.9%"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-label"
-  }, "Containment Rate")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-number"
-  }, "10k+"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-label"
-  }, "Malware Samples Analyzed Daily")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-number"
-  }, "24/7"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "stat-label"
-  }, "Security Monitoring"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
-    id: "contact",
-    className: "contact"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Contact Us"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "contact-form"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "form-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: "name"
-  }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-    type: "text",
-    id: "name",
-    placeholder: "Your name"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "form-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: "email"
-  }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-    type: "email",
-    id: "email",
-    placeholder: "Your email"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "form-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-    htmlFor: "message"
-  }, "Message"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
-    id: "message",
-    placeholder: "Your message"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "submit-button"
-  }, "Send Message"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("footer", {
-    className: "footer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "footer-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "footer-logo"
-  }, "SINS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "footer-links"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "/terms"
-  }, "Terms of Service")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "/privacy"
-  }, "Privacy Policy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "/docs"
-  }, "Documentation")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "/blog"
-  }, "Blog")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "footer-social"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "#",
-    className: "social-icon"
-  }, "GitHub"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "#",
-    className: "social-icon"
-  }, "Twitter"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-    href: "#",
-    className: "social-icon"
-  }, "LinkedIn"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "footer-bottom"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "\xA9 ", new Date().getFullYear(), " SINS Malware Sandbox. All rights reserved."))));
+  const {
+    0: isDarkMode,
+    1: setIsDarkMode
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const {
+    0: isGlitching,
+    1: setIsGlitching
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const {
+    0: isCardHovered,
+    1: setIsCardHovered
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+
+  // Load theme preference from localStorage on mount
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+    } else {
+      // Default to system preference
+      setIsDarkMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+  }, []);
+
+  // Save theme preference and apply CSS variables
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    const theme = isDarkMode ? themes.dark : themes.light;
+
+    // Apply CSS custom properties to root
+    Object.entries(theme).forEach(([key, value]) => {
+      document.documentElement.style.setProperty(`--color-${key}`, value);
+    });
+
+    // Also apply background to body to prevent white strips
+    document.body.style.backgroundColor = theme.background;
+    document.body.style.color = theme.onBackground;
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    document.body.style.overflow = 'hidden';
+  }, [isDarkMode]);
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: containerStyles
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("style", {
+    dangerouslySetInnerHTML: {
+      __html: keyframeStyles
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("link", {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("link", {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("link", {
+    href: "https://fonts.googleapis.com/css2?family=Unica+One&family=Open+Sans:wght@300;400;500;600&display=swap",
+    rel: "stylesheet"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    style: themeToggleStyles,
+    onClick: toggleTheme,
+    "aria-label": `Switch to ${isDarkMode ? 'light' : 'dark'} mode`
+  }, isDarkMode ? '☀️' : '🌙'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("main", {
+    style: mainStyles
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: contentWrapperStyles
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+    style: welcomeSectionStyles
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: {
+      position: 'relative',
+      display: 'inline-block'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    style: {
+      ...welcomeTextStyles,
+      ...(isGlitching ? hackersGlitchStyles : {})
+    },
+    onMouseEnter: () => setIsGlitching(true),
+    onMouseLeave: () => setIsGlitching(false)
+  }, "\\\\ ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    style: brandNameStyles
+  }, "reflux"), " \\\\"), isGlitching && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: glitchOverlay1
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: glitchOverlay2
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: glitchOverlay3
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+    style: solutionsSectionStyles
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    style: sectionTitleStyles
+  }, "Our Solutions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: solutionsGridStyles
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: isCardHovered ? solutionCardHoverStyles : solutionCardStyles,
+    onMouseEnter: () => setIsCardHovered(true),
+    onMouseLeave: () => setIsCardHovered(false)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: '1rem'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(SandboxLogo, {
+    size: 32,
+    color: "var(--color-primary)"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    style: solutionTitleStyles
+  }, "simple-sandbox"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    style: solutionDescriptionStyles
+  }, "Interactive malware analysis sandbox for secure threat investigation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    style: solutionButtonStyles,
+    onClick: () => window.open('/simple-sandbox', '_blank')
+  }, ">")))))));
+};
+
+// CSS Keyframes - Updated with Hackers-style glitch
+const keyframeStyles = `
+  @keyframes hackersGlitch {
+    0%, 100% { 
+      transform: translate(0);
+      filter: hue-rotate(0deg);
+    }
+    10% { 
+      transform: translate(-2px, 0);
+      filter: hue-rotate(90deg) saturate(3);
+    }
+    20% { 
+      transform: translate(2px, 0);
+      filter: hue-rotate(180deg) saturate(2);
+    }
+    30% { 
+      transform: translate(-1px, 0);
+      filter: hue-rotate(270deg) saturate(4);
+    }
+    40% { 
+      transform: translate(1px, 0);
+      filter: hue-rotate(360deg) saturate(1);
+    }
+    50% { 
+      transform: translate(-3px, 0);
+      filter: hue-rotate(45deg) saturate(5) brightness(2);
+    }
+    60% { 
+      transform: translate(3px, 0);
+      filter: hue-rotate(135deg) saturate(3) brightness(0.5);
+    }
+    70% { 
+      transform: translate(-1px, 0);
+      filter: hue-rotate(225deg) saturate(4) brightness(1.5);
+    }
+    80% { 
+      transform: translate(1px, 0);
+      filter: hue-rotate(315deg) saturate(2) brightness(0.8);
+    }
+    90% { 
+      transform: translate(0);
+      filter: hue-rotate(0deg) saturate(6) brightness(3);
+    }
+  }
+
+  @keyframes scanlines {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  @keyframes rgbShift {
+    0% { transform: translate(0); }
+    33% { transform: translate(-1px, 0); }
+    66% { transform: translate(1px, 0); }
+    100% { transform: translate(0); }
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+  }
+`;
+
+// Hackers-style glitch effect
+const hackersGlitchStyles = {
+  animation: 'hackersGlitch 0.6s ease-in-out',
+  position: 'relative',
+  textShadow: `
+    2px 0 #ff00ff,
+    -2px 0 #00ffff,
+    0 2px #ffff00,
+    0 -2px #ff0000
+  `
+};
+
+// Glitch overlay elements for scanlines and RGB shift
+const glitchOverlay1 = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  background: `repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 0, 255, 0.1) 2px,
+    rgba(255, 0, 255, 0.1) 4px
+  )`,
+  animation: 'scanlines 0.1s linear infinite',
+  pointerEvents: 'none',
+  zIndex: 1
+};
+const glitchOverlay2 = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  background: `repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 255, 255, 0.05) 1px,
+    rgba(0, 255, 255, 0.05) 2px
+  )`,
+  animation: 'rgbShift 0.1s linear infinite',
+  pointerEvents: 'none',
+  zIndex: 2
+};
+const glitchOverlay3 = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  background: `linear-gradient(
+    45deg,
+    rgba(255, 255, 0, 0.1) 0%,
+    transparent 25%,
+    rgba(255, 0, 255, 0.1) 50%,
+    transparent 75%,
+    rgba(0, 255, 255, 0.1) 100%
+  )`,
+  animation: 'hackersGlitch 0.3s ease-in-out',
+  pointerEvents: 'none',
+  zIndex: 3
+};
+
+// Main Styles
+const containerStyles = {
+  height: '100vh',
+  width: '100vw',
+  backgroundColor: 'var(--color-background)',
+  color: 'var(--color-onBackground)',
+  fontFamily: '"Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+  transition: 'background-color 0.3s ease, color 0.3s ease',
+  margin: 0,
+  padding: 0,
+  position: 'relative',
+  overflow: 'hidden',
+  background: `linear-gradient(45deg, 
+    var(--color-background) 0%, 
+    var(--color-surface) 50%, 
+    var(--color-background) 100%)`,
+  backgroundSize: '400% 400%',
+  animation: 'gradientShift 8s ease infinite'
+};
+const themeToggleStyles = {
+  background: 'var(--color-surface)',
+  border: 'none',
+  color: 'var(--color-onSurface)',
+  padding: '0.5rem',
+  borderRadius: '50%',
+  cursor: 'pointer',
+  fontSize: '1.2rem',
+  fontFamily: '"Open Sans", sans-serif',
+  width: '3rem',
+  height: '3rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxShadow: `
+    4px 4px 8px var(--color-darkShadow),
+    -4px -4px 8px var(--color-lightShadow)
+  `,
+  transition: 'all 0.2s ease',
+  position: 'fixed',
+  bottom: '2rem',
+  right: '2rem',
+  zIndex: 1000
+};
+const mainStyles = {
+  height: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+  zIndex: 100
+};
+const contentWrapperStyles = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '4rem',
+  width: '100%',
+  maxWidth: '1200px',
+  padding: '0 2rem'
+};
+const welcomeSectionStyles = {
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  textAlign: 'center'
+};
+const welcomeTextStyles = {
+  fontSize: '3.5rem',
+  fontWeight: '400',
+  fontFamily: '"Unica One", cursive',
+  margin: 0,
+  color: 'var(--color-onBackground)',
+  lineHeight: '1.2',
+  letterSpacing: '0.02em'
+};
+const brandNameStyles = {
+  color: 'var(--color-primary)',
+  fontWeight: '400',
+  fontFamily: '"Unica One", cursive'
+};
+
+// Solutions Section Styles
+const solutionsSectionStyles = {
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '2rem'
+};
+const sectionTitleStyles = {
+  fontSize: '2.2rem',
+  fontWeight: '400',
+  fontFamily: '"Unica One", cursive',
+  color: 'var(--color-onBackground)',
+  textAlign: 'center',
+  margin: 0,
+  letterSpacing: '0.01em'
+};
+const solutionsGridStyles = {
+  display: 'flex',
+  justifyContent: 'center'
+};
+const solutionCardStyles = {
+  background: 'var(--color-surface)',
+  padding: '2rem',
+  borderRadius: '16px',
+  boxShadow: `
+    inset 8px 8px 16px var(--color-darkShadow),
+    inset -8px -8px 16px var(--color-lightShadow)
+  `,
+  textAlign: 'center',
+  maxWidth: '350px',
+  width: '100%',
+  transition: 'all 0.3s ease',
+  cursor: 'pointer'
+};
+const solutionCardHoverStyles = {
+  background: 'var(--color-surface)',
+  padding: '2rem',
+  borderRadius: '16px',
+  boxShadow: `
+    8px 8px 16px var(--color-darkShadow),
+    -8px -8px 16px var(--color-lightShadow)
+  `,
+  textAlign: 'center',
+  maxWidth: '350px',
+  width: '100%',
+  transition: 'all 0.3s ease',
+  cursor: 'pointer',
+  transform: 'translateY(-2px)'
+};
+const solutionTitleStyles = {
+  fontSize: '1.6rem',
+  fontWeight: '400',
+  fontFamily: '"Unica One", cursive',
+  color: 'var(--color-primary)',
+  marginTop: 0,
+  marginBottom: '1rem',
+  letterSpacing: '0.01em'
+};
+const solutionDescriptionStyles = {
+  fontSize: '1rem',
+  fontFamily: '"Open Sans", sans-serif',
+  fontWeight: '400',
+  color: 'var(--color-onSurface)',
+  lineHeight: '1.6',
+  marginBottom: '1.5rem'
+};
+const solutionButtonStyles = {
+  background: 'var(--color-primary)',
+  color: 'var(--color-onPrimary)',
+  border: 'none',
+  padding: '0.75rem 1.5rem',
+  borderRadius: '12px',
+  cursor: 'pointer',
+  fontSize: '1rem',
+  fontFamily: '"Open Sans", sans-serif',
+  fontWeight: '500',
+  transition: 'all 0.2s ease'
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IndexPage);
-const Head = () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("title", null, "SINS - Secure Interactive Malware Sandbox");
-
-/***/ }),
-
-/***/ "./src/styles/index.css":
-/*!******************************!*\
-  !*** ./src/styles/index.css ***!
-  \******************************/
-/***/ (() => {
-
-
+const Head = () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("title", null, "\\\\ reflux \\\\");
 
 /***/ })
 

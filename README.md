@@ -1,66 +1,49 @@
-# SINS - Secure Interactive Malware Sandbox
+<p align="center">
+  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
+    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  Gatsby Minimal Starter
+</h1>
 
-Landing page for the SINS platform - an interactive malware sandbox for security researchers and professionals.
+## 🚀 Quick start
 
-## Features
+1.  **Create a Gatsby site.**
 
-- Modern neumorphic UI design
-- Responsive layout
-- Gatsby-powered static site
-- Docker containerization for development
+    Use the Gatsby CLI to create a new site, specifying the minimal starter.
 
-## Getting Started
+    ```shell
+    # create a new Gatsby site using the minimal starter
+    npm init gatsby
+    ```
 
-### Prerequisites
+2.  **Start developing.**
 
-- Node.js (v14 or higher)
-- npm or yarn
-- Docker (optional, for containerized development)
+    Navigate into your new site’s directory and start it up.
 
-### Installation
+    ```shell
+    cd my-gatsby-site/
+    npm run develop
+    ```
 
-1. Clone the repository:
+3.  **Open the code and start customizing!**
 
-```bash
-git clone https://github.com/S-I-N-S/website.git
-cd website
-```
+    Your site is now running at http://localhost:8000!
 
-2. Install dependencies:
+    Edit `src/pages/index.js` to see your site update in real-time!
 
-```bash
-npm install
-```
+4.  **Learn more**
 
-3. Start the development server:
+    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
 
-```bash
-npm run develop
-```
+## 🚀 Quick start (Netlify)
 
-Or with Docker:
+Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
 
-```bash
-docker-compose up
-```
-
-4. Open your browser and visit http://localhost:8000
-
-## Building for Production
-
-```bash
-npm run build
-```
-
-The built files will be in the `public` directory.
-
-## Project Structure
-
-- `src/pages/`: Gatsby pages
-- `src/components/`: React components
-- `src/styles/`: CSS styles
-- `src/images/`: Static images
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)

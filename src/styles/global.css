@@ -1,0 +1,97 @@
+/* Global styles for smooth theme transitions */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--color-background, #fcfbfc);
+  color: var(--color-onBackground, #323133);
+}
+
+/* Remove any default margins from Gatsby wrapper */
+#___gatsby, #gatsby-focus-wrapper {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Enhanced button hover effects */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    6px 6px 12px var(--color-darkShadow),
+    -6px -6px 12px var(--color-lightShadow);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 
+    inset 2px 2px 4px var(--color-darkShadow),
+    inset -2px -2px 4px var(--color-lightShadow);
+}
+
+/* Solution button specific hover effects */
+button[style*="var(--color-primary)"]:hover {
+  box-shadow: 
+    6px 6px 12px var(--color-primaryDarkShadow);
+  transform: translateY(-2px) scale(1.02);
+}
+
+button[style*="var(--color-primary)"]:active {
+  transform: translateY(0) scale(1);
+  box-shadow: 
+    inset 2px 2px 4px var(--color-primaryDarkShadow);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+  
+  .content-wrapper {
+    gap: 3rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  .welcome-text {
+    font-size: 2.5rem !important;
+  }
+  
+  .section-title {
+    font-size: 1.6rem !important;
+  }
+  
+  .solution-card {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-text {
+    font-size: 2rem !important;
+  }
+  
+  .section-title {
+    font-size: 1.4rem !important;
+  }
+  
+  .solution-title {
+    font-size: 1.2rem !important;
+  }
+  
+  .solution-card {
+    padding: 1rem !important;
+  }
+}

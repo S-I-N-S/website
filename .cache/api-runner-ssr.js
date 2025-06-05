@@ -1,22 +1,18 @@
 var plugins = [{
-      name: 'gatsby-plugin-react-helmet',
-      plugin: require('/app/node_modules/gatsby-plugin-react-helmet/gatsby-ssr.js'),
+      name: 'gatsby-plugin-image',
+      plugin: require('/home/cayub/code/personal/S-I-N-S/website/node_modules/gatsby-plugin-image/gatsby-ssr.js'),
       options: {"plugins":[]},
     },{
-      name: 'gatsby-plugin-image',
-      plugin: require('/app/node_modules/gatsby-plugin-image/gatsby-ssr.js'),
-      options: {"plugins":[]},
+      name: 'gatsby-plugin-sitemap',
+      plugin: require('/home/cayub/code/personal/S-I-N-S/website/node_modules/gatsby-plugin-sitemap/gatsby-ssr.js'),
+      options: {"plugins":[],"output":"/","createLinkInHead":true,"entryLimit":45000,"query":"{ site { siteMetadata { siteUrl } } allSitePage { nodes { path } } }","excludes":[]},
     },{
       name: 'gatsby-plugin-manifest',
-      plugin: require('/app/node_modules/gatsby-plugin-manifest/gatsby-ssr.js'),
-      options: {"plugins":[],"name":"SINS Malware Sandbox","short_name":"SINS","start_url":"/","background_color":"#e0e5ec","theme_color":"#4d5b9e","display":"minimal-ui","icon":"src/images/sins-icon.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"37900142fa28f9b51e77baf0fa1c8500"},
-    },{
-      name: 'gatsby-plugin-offline',
-      plugin: require('/app/node_modules/gatsby-plugin-offline/gatsby-ssr.js'),
-      options: {"plugins":[]},
+      plugin: require('/home/cayub/code/personal/S-I-N-S/website/node_modules/gatsby-plugin-manifest/gatsby-ssr.js'),
+      options: {"plugins":[],"name":"Reflux - Security Solutions","short_name":"Reflux","start_url":"/","background_color":"#7C3AED","theme_color":"#7C3AED","display":"minimal-ui","icon":"static/favicon-32x32.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":null},
     },{
       name: 'partytown',
-      plugin: require('/app/node_modules/gatsby/dist/internal-plugins/partytown/gatsby-ssr.js'),
+      plugin: require('/home/cayub/code/personal/S-I-N-S/website/node_modules/gatsby/dist/internal-plugins/partytown/gatsby-ssr.js'),
       options: {"plugins":[]},
     }]
 /* global plugins */
