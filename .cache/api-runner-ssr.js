@@ -9,7 +9,7 @@ var plugins = [{
     },{
       name: 'gatsby-plugin-manifest',
       plugin: require('/home/cayub/code/personal/S-I-N-S/website/node_modules/gatsby-plugin-manifest/gatsby-ssr.js'),
-      options: {"plugins":[],"name":"Reflux - Security Solutions","short_name":"Reflux","start_url":"/","background_color":"#7C3AED","theme_color":"#7C3AED","display":"minimal-ui","icon":"static/favicon-32x32.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":null},
+      options: {"plugins":[],"name":"Reflux - Security Solutions","short_name":"Reflux","start_url":"/","background_color":"#7C3AED","theme_color":"#7C3AED","display":"minimal-ui","icon":"static/favicon-32x32.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"533d59e8a08a4e0ba9d8beeeb1fb3141"},
     },{
       name: 'partytown',
       plugin: require('/home/cayub/code/personal/S-I-N-S/website/node_modules/gatsby/dist/internal-plugins/partytown/gatsby-ssr.js'),
