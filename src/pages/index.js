@@ -1,5 +1,6 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
+import GameDayLogo from "../components/GameDayLogo"
 
 // Sandbox Logo Component (inline to avoid import issues)
 const SandboxLogo = ({ size = 24, color = 'currentColor' }) => (
@@ -112,7 +113,8 @@ const themes = {
 const IndexPage = () => {
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [isGlitching, setIsGlitching] = useState(false)
-  const [isCardHovered, setIsCardHovered] = useState(false)
+  const [isGameDayHovered, setIsGameDayHovered] = useState(false)
+  const [isSandboxHovered, setIsSandboxHovered] = useState(false)
   
   // Load theme preference from localStorage on mount
   useEffect(() => {
@@ -196,10 +198,32 @@ const IndexPage = () => {
           <section style={solutionsSectionStyles}>
             <h2 style={sectionTitleStyles}>Our Solutions</h2>
             <div style={solutionsGridStyles}>
+              {/* GameDay Card */}
               <div 
-                style={isCardHovered ? solutionCardHoverStyles : solutionCardStyles}
-                onMouseEnter={() => setIsCardHovered(true)}
-                onMouseLeave={() => setIsCardHovered(false)}
+                style={isGameDayHovered ? solutionCardHoverStyles : solutionCardStyles}
+                onMouseEnter={() => setIsGameDayHovered(true)}
+                onMouseLeave={() => setIsGameDayHovered(false)}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                  <GameDayLogo size={32} color="var(--color-primary)" />
+                </div>
+                <h3 style={solutionTitleStyles}>GameDay</h3>
+                <p style={solutionDescriptionStyles}>
+                  Fast and Easy to use football stats and visualization platform
+                </p>
+                <button 
+                  style={solutionButtonStyles}
+                  onClick={() => window.open('https://gameday.reflux.cloud', '_blank')}
+                >
+                  &gt;
+                </button>
+              </div>
+              
+              {/* Simple Sandbox Card */}
+              <div 
+                style={isSandboxHovered ? solutionCardHoverStyles : solutionCardStyles}
+                onMouseEnter={() => setIsSandboxHovered(true)}
+                onMouseLeave={() => setIsSandboxHovered(false)}
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
                   <SandboxLogo size={32} color="var(--color-primary)" />
@@ -212,7 +236,7 @@ const IndexPage = () => {
                   style={solutionButtonStyles}
                   onClick={() => window.open('/simple-sandbox', '_blank')}
                 >
-                  >
+                  &gt;
                 </button>
               </div>
             </div>
@@ -464,7 +488,9 @@ const sectionTitleStyles = {
 
 const solutionsGridStyles = {
   display: 'flex',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  gap: '2rem',
+  flexWrap: 'wrap'
 }
 
 const solutionCardStyles = {
