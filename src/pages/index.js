@@ -1,6 +1,7 @@
 import * as React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import GameDayLogo from "../components/GameDayLogo"
+import BlogSection from "../components/BlogSection"
 
 // Sandbox Logo Component (inline to avoid import issues)
 const SandboxLogo = ({ size = 24, color = 'currentColor' }) => (
@@ -67,9 +68,9 @@ const themes = {
     outline: '#8a8299',
     shadow: '#d6d5d6',
     
-    // Neomorphic shadows
+    // Neomorphic shadows - improved contrast
     lightShadow: '#ffffff',
-    darkShadow: '#d6d5d6',
+    darkShadow: '#c8c7c9',
     primaryDarkShadow: '#6931c9',
     primaryLightShadow: '#8f43ff'
   },
@@ -102,9 +103,9 @@ const themes = {
     outline: '#a1b3a8',
     shadow: '#2a2b2b',
     
-    // Neomorphic shadows
-    lightShadow: '#383b3a',
-    darkShadow: '#2a2b2b',
+    // Neomorphic shadows - improved contrast
+    lightShadow: '#3d403f',
+    darkShadow: '#252626',
     primaryDarkShadow: '#80c499',
     primaryLightShadow: '#aeffcf'
   }
@@ -115,6 +116,11 @@ const IndexPage = () => {
   const [isGlitching, setIsGlitching] = useState(false)
   const [isGameDayHovered, setIsGameDayHovered] = useState(false)
   const [isSandboxHovered, setIsSandboxHovered] = useState(false)
+  const [currentSection, setCurrentSection] = useState(0) // 0 for solutions, 1 for blog
+  
+  const solutionsRef = useRef(null)
+  const blogRef = useRef(null)
+  const containerRef = useRef(null)
   
   // Load theme preference from localStorage on mount
   useEffect(() => {
@@ -149,6 +155,37 @@ const IndexPage = () => {
     setIsDarkMode(!isDarkMode)
   }
   
+  // Scroll detection to update current section
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return
+      
+      const scrollTop = containerRef.current.scrollTop
+      const viewportHeight = window.innerHeight
+      
+      // Determine which section is in view
+      if (scrollTop < viewportHeight / 2) {
+        setCurrentSection(0)
+      } else {
+        setCurrentSection(1)
+      }
+    }
+    
+    const container = containerRef.current
+    if (container) {
+      container.addEventListener('scroll', handleScroll)
+      return () => container.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+  
+  // Navigation functions
+  const scrollToSection = (sectionIndex) => {
+    const targetRef = sectionIndex === 0 ? solutionsRef : blogRef
+    if (targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+  
   return (
     <div style={containerStyles}>
       {/* CSS Keyframes */}
@@ -171,78 +208,99 @@ const IndexPage = () => {
         {isDarkMode ? '☀️' : '🌙'}
       </button>
       
-      {/* Main content - Perfectly centered */}
-      <main style={mainStyles}>
-        <div style={contentWrapperStyles}>
-          <section style={welcomeSectionStyles}>
-            <div style={{ position: 'relative', display: 'inline-block' }}>
-              <h1 
-                style={{...welcomeTextStyles, ...(isGlitching ? hackersGlitchStyles : {})}}
-                onMouseEnter={() => setIsGlitching(true)}
-                onMouseLeave={() => setIsGlitching(false)}
-              >
-                \\ <span style={brandNameStyles}>reflux</span> \\
-              </h1>
-              {/* Glitch overlay elements */}
-              {isGlitching && (
-                <>
-                  <div style={glitchOverlay1} />
-                  <div style={glitchOverlay2} />
-                  <div style={glitchOverlay3} />
-                </>
-              )}
-            </div>
-          </section>
-          
-          {/* Solutions Section */}
-          <section style={solutionsSectionStyles}>
-            <h2 style={sectionTitleStyles}>Our Solutions</h2>
-            <div style={solutionsGridStyles}>
-              {/* GameDay Card */}
-              <div 
-                style={isGameDayHovered ? solutionCardHoverStyles : solutionCardStyles}
-                onMouseEnter={() => setIsGameDayHovered(true)}
-                onMouseLeave={() => setIsGameDayHovered(false)}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                  <GameDayLogo size={32} color="var(--color-primary)" />
+      {/* Navigation Arrow */}
+      <button
+        style={currentSection === 0 ? scrollArrowDownStyles : scrollArrowUpStyles}
+        onClick={() => scrollToSection(currentSection === 0 ? 1 : 0)}
+        aria-label={currentSection === 0 ? 'Scroll to blog' : 'Scroll to solutions'}
+      >
+        {currentSection === 0 ? '↓' : '↑'}
+      </button>
+      
+      {/* Scroll container with snap points */}
+      <div ref={containerRef} style={scrollContainerStyles}>
+        {/* Solutions Section */}
+        <section ref={solutionsRef} style={snapSectionStyles}>
+          <main style={mainStyles}>
+            <div style={contentWrapperStyles}>
+              <section style={welcomeSectionStyles}>
+                <div style={{ position: 'relative', display: 'inline-block' }}>
+                  <h1 
+                    style={{...welcomeTextStyles, ...(isGlitching ? hackersGlitchStyles : {})}}
+                    onMouseEnter={() => setIsGlitching(true)}
+                    onMouseLeave={() => setIsGlitching(false)}
+                  >
+                    \\ <span style={brandNameStyles}>reflux</span> \\
+                  </h1>
+                  {/* Glitch overlay elements */}
+                  {isGlitching && (
+                    <>
+                      <div style={glitchOverlay1} />
+                      <div style={glitchOverlay2} />
+                      <div style={glitchOverlay3} />
+                    </>
+                  )}
                 </div>
-                <h3 style={solutionTitleStyles}>GameDay</h3>
-                <p style={solutionDescriptionStyles}>
-                  Fast and Easy to use football stats and visualization platform
-                </p>
-                <button 
-                  style={solutionButtonStyles}
-                  onClick={() => window.open('https://gameday.reflux.cloud', '_blank')}
-                >
-                  &gt;
-                </button>
-              </div>
+              </section>
               
-              {/* Simple Sandbox Card */}
-              <div 
-                style={isSandboxHovered ? solutionCardHoverStyles : solutionCardStyles}
-                onMouseEnter={() => setIsSandboxHovered(true)}
-                onMouseLeave={() => setIsSandboxHovered(false)}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                  <SandboxLogo size={32} color="var(--color-primary)" />
+              {/* Solutions Section */}
+              <section style={solutionsSectionStyles}>
+                <h2 style={sectionTitleStyles}>Our Solutions</h2>
+                <div style={solutionsGridStyles}>
+                  {/* GameDay Card */}
+                  <div 
+                    style={isGameDayHovered ? solutionCardHoverStyles : solutionCardStyles}
+                    onMouseEnter={() => setIsGameDayHovered(true)}
+                    onMouseLeave={() => setIsGameDayHovered(false)}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                      <GameDayLogo size={32} color="var(--color-primary)" />
+                    </div>
+                    <h3 style={solutionTitleStyles}>GameDay</h3>
+                    <p style={solutionDescriptionStyles}>
+                      Fast and Easy to use football stats and visualization platform
+                    </p>
+                    <button 
+                      style={solutionButtonStyles}
+                      onClick={() => window.open('https://gameday.reflux.cloud', '_blank')}
+                    >
+                      &gt;
+                    </button>
+                  </div>
+                  
+                  {/* Simple Sandbox Card */}
+                  <div 
+                    style={isSandboxHovered ? solutionCardHoverStyles : solutionCardStyles}
+                    onMouseEnter={() => setIsSandboxHovered(true)}
+                    onMouseLeave={() => setIsSandboxHovered(false)}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                      <SandboxLogo size={32} color="var(--color-primary)" />
+                    </div>
+                    <h3 style={solutionTitleStyles}>simple-sandbox</h3>
+                    <p style={solutionDescriptionStyles}>
+                      Interactive malware analysis sandbox for secure threat investigation
+                    </p>
+                    <button 
+                      style={solutionButtonStyles}
+                      onClick={() => window.open('/simple-sandbox', '_blank')}
+                    >
+                      &gt;
+                    </button>
+                  </div>
                 </div>
-                <h3 style={solutionTitleStyles}>simple-sandbox</h3>
-                <p style={solutionDescriptionStyles}>
-                  Interactive malware analysis sandbox for secure threat investigation
-                </p>
-                <button 
-                  style={solutionButtonStyles}
-                  onClick={() => window.open('/simple-sandbox', '_blank')}
-                >
-                  &gt;
-                </button>
-              </div>
+              </section>
             </div>
-          </section>
-        </div>
-      </main>
+          </main>
+        </section>
+        
+        {/* Blog Section */}
+        <section ref={blogRef} style={snapSectionStyles}>
+          <main style={mainStyles}>
+            <BlogSection />
+          </main>
+        </section>
+      </div>
     </div>
   )
 }
@@ -390,19 +448,13 @@ const containerStyles = {
   margin: 0,
   padding: 0,
   position: 'relative',
-  overflow: 'hidden',
-  background: `linear-gradient(45deg, 
-    var(--color-background) 0%, 
-    var(--color-surface) 50%, 
-    var(--color-background) 100%)`,
-  backgroundSize: '400% 400%',
-  animation: 'gradientShift 8s ease infinite'
+  overflow: 'hidden'
 }
 
 const themeToggleStyles = {
-  background: 'var(--color-surface)',
+  background: 'var(--color-background)',
   border: 'none',
-  color: 'var(--color-onSurface)',
+  color: 'var(--color-onBackground)',
   padding: '0.5rem',
   borderRadius: '50%',
   cursor: 'pointer',
@@ -414,8 +466,8 @@ const themeToggleStyles = {
   alignItems: 'center',
   justifyContent: 'center',
   boxShadow: `
-    4px 4px 8px var(--color-darkShadow),
-    -4px -4px 8px var(--color-lightShadow)
+    6px 6px 12px var(--color-darkShadow),
+    -6px -6px 12px var(--color-lightShadow)
   `,
   transition: 'all 0.2s ease',
   position: 'fixed',
@@ -494,12 +546,12 @@ const solutionsGridStyles = {
 }
 
 const solutionCardStyles = {
-  background: 'var(--color-surface)',
+  background: 'var(--color-background)',
   padding: '2rem',
   borderRadius: '16px',
   boxShadow: `
-    inset 8px 8px 16px var(--color-darkShadow),
-    inset -8px -8px 16px var(--color-lightShadow)
+    inset 9px 9px 18px var(--color-darkShadow),
+    inset -9px -9px 18px var(--color-lightShadow)
   `,
   textAlign: 'center',
   maxWidth: '350px',
@@ -509,19 +561,19 @@ const solutionCardStyles = {
 }
 
 const solutionCardHoverStyles = {
-  background: 'var(--color-surface)',
+  background: 'var(--color-background)',
   padding: '2rem',
   borderRadius: '16px',
   boxShadow: `
-    8px 8px 16px var(--color-darkShadow),
-    -8px -8px 16px var(--color-lightShadow)
+    9px 9px 18px var(--color-darkShadow),
+    -9px -9px 18px var(--color-lightShadow)
   `,
   textAlign: 'center',
   maxWidth: '350px',
   width: '100%',
   transition: 'all 0.3s ease',
   cursor: 'pointer',
-  transform: 'translateY(-2px)'
+  transform: 'translateY(-4px)'
 }
 
 const solutionTitleStyles = {
@@ -554,6 +606,80 @@ const solutionButtonStyles = {
   fontFamily: '"Open Sans", sans-serif',
   fontWeight: '500',
   transition: 'all 0.2s ease'
+}
+
+// Scroll container with snap points
+const scrollContainerStyles = {
+  height: '100vh',
+  width: '100vw',
+  overflowY: 'scroll',
+  overflowX: 'hidden',
+  scrollSnapType: 'y mandatory',
+  scrollBehavior: 'smooth',
+  position: 'relative'
+}
+
+// Each section takes full viewport height and is a snap point
+const snapSectionStyles = {
+  minHeight: '100vh',
+  width: '100%',
+  scrollSnapAlign: 'start',
+  scrollSnapStop: 'always',
+  position: 'relative'
+}
+
+// Navigation arrow styles - down arrow at bottom center
+const scrollArrowDownStyles = {
+  position: 'fixed',
+  bottom: '1.5rem',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  background: 'var(--color-background)',
+  border: 'none',
+  color: 'var(--color-onBackground)',
+  padding: '0.75rem',
+  borderRadius: '50%',
+  cursor: 'pointer',
+  fontSize: '1.5rem',
+  fontFamily: '"Open Sans", sans-serif',
+  width: '3.5rem',
+  height: '3.5rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxShadow: `
+    6px 6px 12px var(--color-darkShadow),
+    -6px -6px 12px var(--color-lightShadow)
+  `,
+  transition: 'all 0.3s ease',
+  zIndex: 999
+}
+
+// Navigation arrow styles - up arrow at top center
+const scrollArrowUpStyles = {
+  position: 'fixed',
+  top: '1.5rem',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  background: 'var(--color-background)',
+  border: 'none',
+  color: 'var(--color-onBackground)',
+  padding: '0.75rem',
+  borderRadius: '50%',
+  cursor: 'pointer',
+  fontSize: '1.5rem',
+  fontFamily: '"Open Sans", sans-serif',
+  width: '3.5rem',
+  height: '3.5rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxShadow: `
+    6px 6px 12px var(--color-darkShadow),
+    -6px -6px 12px var(--color-lightShadow)
+  `,
+  transition: 'all 0.3s ease',
+  zIndex: 999
 }
 
 export default IndexPage
